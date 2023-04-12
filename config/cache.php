@@ -103,4 +103,9 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
 
+    'key_prefix' => [
+        'general_key_prefix' => 'IPTV:1',
+        'user_model'=>'User'
+      ],
+
 ];
