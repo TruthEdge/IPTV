@@ -15,3 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
         //
     ]);
+
+
+mix.scripts([
+    'public/assets/js/main.js',
+  ], 'public/resources/js/mix/backend-custom-all.min.js');

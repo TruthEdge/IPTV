@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="login-card">
-                    <form  class="theme-form login-form"  wire:submit.prevent="login" method="post" >
+                    <form  class="theme-form login-form"  wire:submit.prevent="login" method="post" autocomplete="true">
                         @csrf
                         <div class="text-center mb-3 ">
                             <img src="{{ asset('dashboard/images/logo/logo.jpg')}}"  width="70%">

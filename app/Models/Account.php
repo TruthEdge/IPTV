@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    protected $connection = 'IPTV';
+    // protected $connection = 'IPTV';
     protected $table = 'users';
     public $timestamps = false;
     protected $casts = [

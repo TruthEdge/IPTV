@@ -20,19 +20,19 @@ class UsersAdminSeeder extends Seeder
     public function run()
     {
 
-        if(!User::where('email','info@lfait.com')->first()) {
-            $user = User::create([
-                'name' => 'Admin',
-                'email' => 'info@lfait.com',
-                'mobile' => '',
-                'password' => Hash::make("Admin@123!@#"),
-                'status' => 1,
-                'gender' => 1,
-            ]);
 
-            $user->assignRole('Admin');
+            $user=User::firstOrCreate(
+                ['email' => 'info@lfait.com',],
+                [
+                    'mobile' => '',
+                    'password' => Hash::make("Admin@123!@#"),
+                    'status' => 1,
+                    'gender' => 1,
+                    'name' => 'Admin',
+                ]
+            );
+            $user?->wasRecentlyCreated ? $user?->assignRole('Admin') : ' ';
 
         }
 
-    }
 }

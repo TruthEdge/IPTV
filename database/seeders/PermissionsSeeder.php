@@ -79,8 +79,9 @@ class PermissionsSeeder extends Seeder
             $Role = Role::findOrCreate($role);
             foreach ($permissions as $permission) {
                 Permission::findOrCreate($permission);
-                $Role->syncPermissions(Permission::whereIn('name', $permissions)->get());
             }
+            $Role->syncPermissions($permissions);
+
         }
     }
 }
