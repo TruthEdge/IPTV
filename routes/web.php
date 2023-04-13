@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('/',\App\Http\Livewire\Admin\Login::class)->name('admin.login');
 Route::prefix('admin')->group(function () {
 
     Route::get('/login', \App\Http\Livewire\Admin\Login::class)->name('admin.login');
