@@ -105,7 +105,9 @@ return [
 
     'key_prefix' => [
         'general_key_prefix' => 'IPTV:1',
-        'user_model'=>'User'
+        'user_model'=>'User',
+        'user_settings_model'=>'User-Settings',
+
       ],
 
 ];

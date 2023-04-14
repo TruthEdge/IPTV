@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -74,6 +75,16 @@ class User extends Authenticatable
         }
 
         return $array;
+    }
+
+    /**
+     * Get all of the comments for the UserSettings
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function settings(): HasMany
+    {
+        return $this->hasMany(UserSettings::class, 'user_id','id');
     }
 
 }
