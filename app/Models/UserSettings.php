@@ -12,6 +12,15 @@ class UserSettings extends Model
 {
     use HasFactory ,SoftDeletes;
 
+    protected $fillable=[
+        'user_id',
+        'data_key',
+        'data_value',
+        'data_type',
+        'updated_by',
+        'created_by',
+    ];
+
  public static function getUserSettingByUserId($user_id)
   {
 
