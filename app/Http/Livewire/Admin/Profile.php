@@ -2,16 +2,20 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Cache\Model\UserCache;
 use App\Models\User;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
 class Profile extends Component
 {
-    public  $user, $roles = [];
+    public  $user, $roles = [],$CacheObj;
 
     function mount($id)
     {
+        $this->CacheObj=new UserCache();
+       $user=$this->CacheObj->getDetails($id);
+       if(!$user)
         $user = User::findOrFail($id);
         $this->user = $user->toArray();
     }
@@ -39,8 +43,8 @@ class Profile extends Component
 //                'password' => 'required|min:6',
 //            ]);
 //        }
+        $user=$this->CacheObj->getDetails($this->user['id']) ?: User::findOrFail($this->user['id']);
 
-        $user = User::findOrFail($this->user['id']);
 
 //
 //        if ($this->user['password']) {

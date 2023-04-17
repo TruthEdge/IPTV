@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Cache;
 
 abstract class BaseCache
 {
-  protected function setDataInCache($key, $data, $seconds = 15768000)
+  public function setDataInCache($key, $data, $seconds = 15768000)
   {
     return Cache::put($key, $data, $seconds);
   }
 
-  protected function getDatafromCache($key)
+  public function getDatafromCache($key)
   {
     return Cache::get($key);
   }
 
-  protected function deleteDataFromCache($key)
+  public function deleteDataFromCache($key)
   {
     return Cache::forget($key);
   }
@@ -36,7 +36,7 @@ abstract class BaseCache
     return $this->deleteDataFromCache($this->getDetailsCacheKey($id));
   }
 
-  protected function getCacheBaseKey()
+  public function getCacheBaseKey()
   {
     return config('cache.key_prefix.general_key_prefix');
   }

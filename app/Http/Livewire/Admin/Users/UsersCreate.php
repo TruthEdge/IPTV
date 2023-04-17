@@ -35,7 +35,7 @@ class UsersCreate extends Component
 
         ]);
 
-        $this->user['user_id'] =  auth()->user()->id;
+        $this->user['user_id'] =  auth()->id();
 
         if ($this->imageTemp) {
             $this->validate([ 'imageTemp' => 'image|mimes:jpeg,png,jpg,gif|max:2048' ]);

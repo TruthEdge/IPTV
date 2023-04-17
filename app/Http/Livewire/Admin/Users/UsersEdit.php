@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+use App\Cache\Model\UserCache;
 use App\Models\Department;
 use App\Models\User;
 use Livewire\Component;
@@ -14,11 +15,12 @@ class UsersEdit extends Component
     use WithFileUploads;
 
 
-    public  $user,$departments, $roles = [], $image ,$imageTemp;
+    public  $user,$departments, $roles = [], $image ,$imageTemp,$CacheObj;
 
     function mount($id)
     {
-        $user = User::findOrFail($id);
+        $this->CacheObj=new UserCache();
+        $user=$this->CacheObj->getDetails($id) ?: User::findOrFail($id);
         $this->user = $user->toArray();
         $this->user['role_id'] = ($user->roles->count() > 0) ? $user->roles->first()->id : 0;
 
@@ -43,7 +45,7 @@ class UsersEdit extends Component
 
         ]);
 
-        $this->user['user_id'] =  auth()->user()->id;
+        $this->user['user_id'] =  auth()->id();
 
         $user = User::findOrFail($this->user['id']);
 

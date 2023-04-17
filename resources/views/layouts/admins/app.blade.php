@@ -76,9 +76,9 @@
     <div class="page-wrapper" id="pageWrapper">
 
         <!-- Page Header Start-->
-         @if(auth()->check())
+         @auth
             @include('layouts.admins.header')
-         @endif
+         @endauth
 
 
         <!-- Page Body Start-->
@@ -86,9 +86,9 @@
         <div class="page-body-wrapper horizontal-menu">
 
             <!-- Page Sidebar Start-->
-        @if(auth()->check())
+        @auth
            @livewire('admin.layouts.sidebar')
-        @endif
+        @endauth
             <!-- Page Sidebar Ends-->
 
 
@@ -102,9 +102,9 @@
 
             <!-- footer start-->
 
-            @if(auth()->check())
+            @auth
                 @include('layouts.admins.footer')
-            @endif
+            @endauth
 
 
         </div>
