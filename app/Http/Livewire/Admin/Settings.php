@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Cache\GeneralCache;
 use App\Models\Setting;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -10,23 +11,27 @@ class Settings extends Component
 {
     use WithFileUploads;
     public $logo,$logoTemp,$site_name,$description,$address,$email,$mobile,$phone,$url_linkedin ,$url_map,$url_twitter ,$url_facebook ,$url_instagram ,$url_whatsapp ,$active;
-
+    protected $cacheObj;
     public function mount(){
-
-        $this->logo = ($setting = Setting::where('name',"logo")->first()) ? $setting->value : '';
-        $this->site_name = ($setting = Setting::where('name',"site_name")->first()) ? $setting->value : '';
-        $this->description = ($setting = Setting::where('name',"description")->first()) ? $setting->value : '';
-        $this->address = ($setting = Setting::where('name',"address")->first()) ? $setting->value : '';
-        $this->email = ($setting = Setting::where('name',"email")->first()) ? $setting->value : '';
-        $this->mobile = ($setting = Setting::where('name',"mobile")->first()) ? $setting->value : '';
-        $this->phone = ($setting = Setting::where('name',"phone")->first()) ? $setting->value : '';
-        $this->url_twitter = ($setting = Setting::where('name',"url_twitter")->first()) ? $setting->value : '';
-        $this->url_facebook = ($setting = Setting::where('name',"url_facebook")->first()) ? $setting->value : '';
-        $this->url_instagram = ($setting = Setting::where('name',"url_instagram")->first()) ? $setting->value : '';
-        $this->url_whatsapp = ($setting = Setting::where('name',"url_whatsapp")->first()) ? $setting->value : '';
-        $this->url_linkedin = ($setting = Setting::where('name',"url_linkedin")->first()) ? $setting->value : '';
-        $this->url_map = ($setting = Setting::where('name',"url_map")->first()) ? $setting->value : '';
-        $this->active = ($setting = Setting::where('name',"active")->first()) ? $setting->value : '';
+        $this->cacheObj=new GeneralCache();
+        if(!$settings=$this->cacheObj->getAllSettingsCache()){
+            $settings=Setting::all();
+            $this->cacheObj->setDataInCache($this->cacheObj->getSettingsCache(),$settings);
+        }
+        $this->logo = $settings->firstWhere('name',"logo")?->value ?: '';
+        $this->site_name = $settings->firstWhere('name',"site_name")?->value ?: '';
+        $this->description = $settings->firstWhere('name',"description")?->value ?: '';
+        $this->address = $settings->firstWhere('name',"address")?->value ?: '';
+        $this->email = $settings->firstWhere('name',"email")?->value ?: '';
+        $this->mobile =$settings->firstWhere('name',"mobile")?->value ?: '';
+        $this->phone = $settings->firstWhere('name',"phone")?->value ?: '';
+        $this->url_twitter =$settings->firstWhere('name',"url_twitter")?->value ?: '';
+        $this->url_facebook = $settings->firstWhere('name',"url_facebook")?->value ?: '';
+        $this->url_instagram = $settings->firstWhere('name',"url_instagram")?->value ?: '';
+        $this->url_whatsapp = $settings->firstWhere('name',"url_whatsapp")?->value ?: '';
+        $this->url_linkedin = $settings->firstWhere('name',"url_linkedin")?->value ?: '';
+        $this->url_map = $settings->firstWhere('name',"url_map")?->value ?: '';
+        $this->active = $settings->firstWhere('name',"active")?->value ?: '';
     }
 
 

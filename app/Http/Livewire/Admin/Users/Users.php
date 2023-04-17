@@ -54,14 +54,13 @@ class Users extends Component
 
     public function delete()
     {
-
-        $users = User::findOrFail($this->deleteId);
-
         if (!auth()->user()->can('users delete')) {
             $this->emit('error','users does not have the right permissions.');
             return false;
 
         }
+
+        $users = User::findOrFail($this->deleteId);
 
         $users->delete();
         $this->emit('success',__("Deleted successfully"));

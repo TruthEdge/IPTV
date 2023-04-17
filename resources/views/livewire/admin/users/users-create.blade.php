@@ -94,7 +94,7 @@
                         <select wire:model.defer="user.gender"
                                 class="form-control @error('user.gender') is-invalid @enderror">
                             <option value="0">{{__("Select Gender")}} ...</option>
-                            @foreach(\App\Models\User::gender(false) as $key => $value)
+                            @foreach(\App\Helper\HelperConstant::gender as $key => $value)
                                 <option value="{{$key}}">{{$value}}</option>
                             @endforeach
                         </select>

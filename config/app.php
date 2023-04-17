@@ -178,6 +178,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
 
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
+        Arcanedev\LogViewer\LogViewerServiceProvider::class,
 
     ],
 
